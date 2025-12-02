@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Account Aggregator Dashboard</h1>
+    <p>Manage consents and financial information requests</p>
+  </header>
+
+  <div class="dashboard-cards">
+    <div class="card" (click)="navigateToCreateConsent()">
+      <div class="card-icon">📝</div>
+      <h2>Create Consent</h2>
+      <p>Initiate a new consent request for financial data access</p>
+    </div>
+
+    <div class="card" (click)="navigateToConsentList()">
+      <div class="card-icon">📋</div>
+      <h2>View Consents</h2>
+      <p>View and manage all consent requests</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h2>FI Requests</h2>
+      <p>Manage financial information requests</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h2>Analytics</h2>
+      <p>View analytics and reports</p>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>Quick Guide</h3>
+    <ol>
+      <li>Create a consent request with customer details</li>
+      <li>Customer approves consent via SMS/WhatsApp link</li>
+      <li>Once approved, create FI request to fetch data</li>
+      <li>View and analyze financial information</li>
+    </ol>
+  </div>
+</div>
+
+
+
+

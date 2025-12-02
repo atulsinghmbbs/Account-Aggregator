@@ -1,0 +1,64 @@
+<div class="fi-request-container">
+  <div class="form-header">
+    <h2>Create FI Request</h2>
+    <p>Request financial information for the approved consent</p>
+  </div>
+
+  <div class="consent-info">
+    <p><strong>Consent Request ID:</strong> <span class="mono">{{ consentRequestId }}</span></p>
+  </div>
+
+  <form [formGroup]="fiRequestForm" (ngSubmit)="onSubmit()" class="fi-request-form">
+    
+    <div class="form-section">
+      <h3>Date Range</h3>
+      <p class="help-text">Select the date range for financial information retrieval</p>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="from">From Date *</label>
+          <input 
+            type="datetime-local" 
+            id="from" 
+            formControlName="from"
+            [class.error]="fiRequestForm.get('from')?.invalid && fiRequestForm.get('from')?.touched">
+          <div class="error-message" *ngIf="fiRequestForm.get('from')?.invalid && fiRequestForm.get('from')?.touched">
+            From date is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to">To Date *</label>
+          <input 
+            type="datetime-local" 
+            id="to" 
+            formControlName="to"
+            [class.error]="fiRequestForm.get('to')?.invalid && fiRequestForm.get('to')?.touched">
+          <div class="error-message" *ngIf="fiRequestForm.get('to')?.invalid && fiRequestForm.get('to')?.touched">
+            To date is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h4>ℹ️ Important Information</h4>
+      <ul>
+        <li>The date range must be within the consent period</li>
+        <li>FI request will be sent to the Account Aggregator</li>
+        <li>Data availability depends on the FIP response time</li>
+        <li>You will be notified once data is available</li>
+      </ul>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="loading">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading || fiRequestForm.invalid">
+        <span *ngIf="!loading">Create FI Request</span>
+        <span *ngIf="loading">Creating...</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,147 @@
+<div class="consent-create-container">
+  <div class="form-header">
+    <h2>Create Consent Request</h2>
+    <p>Fill in the details to create a new consent request</p>
+  </div>
+
+  <form [formGroup]="consentForm" (ngSubmit)="onSubmit()" class="consent-form">
+    
+    <!-- Customer Details Section -->
+    <div class="form-section">
+      <h3>Customer Details</h3>
+      
+      <div class="form-group">
+        <label for="customerName">Customer Name *</label>
+        <input 
+          type="text" 
+          id="customerName" 
+          formControlName="customerName"
+          placeholder="Enter customer name"
+          [class.error]="consentForm.get('customerName')?.invalid && consentForm.get('customerName')?.touched">
+        <div class="error-message" *ngIf="consentForm.get('customerName')?.invalid && consentForm.get('customerName')?.touched">
+          Customer name is required (min 3 characters)
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerEmail">Email *</label>
+        <input 
+          type="email" 
+          id="customerEmail" 
+          formControlName="customerEmail"
+          placeholder="customer@example.com"
+          [class.error]="consentForm.get('customerEmail')?.invalid && consentForm.get('customerEmail')?.touched">
+        <div class="error-message" *ngIf="consentForm.get('customerEmail')?.invalid && consentForm.get('customerEmail')?.touched">
+          Valid email is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerMobile">Mobile Number *</label>
+        <input 
+          type="tel" 
+          id="customerMobile" 
+          formControlName="customerMobile"
+          placeholder="9876543210"
+          maxlength="10"
+          [class.error]="consentForm.get('customerMobile')?.invalid && consentForm.get('customerMobile')?.touched">
+        <div class="error-message" *ngIf="consentForm.get('customerMobile')?.invalid && consentForm.get('customerMobile')?.touched">
+          Valid 10-digit mobile number is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerRefId">Customer Reference ID (Optional)</label>
+        <input 
+          type="text" 
+          id="customerRefId" 
+          formControlName="customerRefId"
+          placeholder="REF123">
+      </div>
+    </div>
+
+    <!-- Consent Period Section -->
+    <div class="form-section">
+      <h3>Consent Period</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="consentStartDate">Consent Start Date *</label>
+          <input 
+            type="datetime-local" 
+            id="consentStartDate" 
+            formControlName="consentStartDate">
+        </div>
+
+        <div class="form-group">
+          <label for="consentExpiryDate">Consent Expiry Date *</label>
+          <input 
+            type="datetime-local" 
+            id="consentExpiryDate" 
+            formControlName="consentExpiryDate">
+        </div>
+      </div>
+    </div>
+
+    <!-- Financial Information Period Section -->
+    <div class="form-section">
+      <h3>Financial Information Period</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fiStartDate">FI Start Date *</label>
+          <input 
+            type="datetime-local" 
+            id="fiStartDate" 
+            formControlName="fiStartDate">
+        </div>
+
+        <div class="form-group">
+          <label for="fiEndDate">FI End Date *</label>
+          <input 
+            type="datetime-local" 
+            id="fiEndDate" 
+            formControlName="fiEndDate">
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Settings -->
+    <div class="form-section">
+      <h3>Notification Settings</h3>
+      
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="notifyCustomer">
+          Notify customer via SMS/WhatsApp
+        </label>
+      </div>
+
+      <div class="form-group" *ngIf="consentForm.get('notifyCustomer')?.value">
+        <label for="customerNotificationMode">Notification Mode</label>
+        <select id="customerNotificationMode" formControlName="customerNotificationMode">
+          <option value="SMS">SMS</option>
+          <option value="WHATSAPP">WhatsApp</option>
+        </select>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="showConsentInfo">
+          Show consent information to customer
+        </label>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="loading">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading || consentForm.invalid">
+        <span *ngIf="!loading">Create Consent</span>
+        <span *ngIf="loading">Creating...</span>
+      </button>
+    </div>
+  </form>
+</div>

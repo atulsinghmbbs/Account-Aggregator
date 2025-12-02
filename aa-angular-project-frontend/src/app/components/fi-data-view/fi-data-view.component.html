@@ -1,0 +1,128 @@
+<div class="fi-data-container">
+  <div class="data-header">
+    <button class="btn-back" (click)="goBack()">← Back</button>
+    <h2>Financial Information Data</h2>
+    <div class="header-actions">
+      <button class="btn btn-secondary" (click)="refresh()">🔄 Refresh</button>
+      <button class="btn btn-primary" (click)="downloadData()" [disabled]="!fiData || !fiData.fi">
+        ⬇️ Download
+      </button>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading financial data...</p>
+  </div>
+
+  <div class="data-content" *ngIf="!loading && fiData">
+    
+    <!-- FI Request Info -->
+    <div class="info-card">
+      <h3>FI Request Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>FI Request ID</label>
+          <span class="mono">{{ fiData.fi_request_id }}</span>
+        </div>
+        <div class="info-item">
+          <label>Status</label>
+          <span class="status-badge" [ngClass]="getStatusClass(fiData.status)">
+            {{ fiData.status }}
+          </span>
+        </div>
+        <div class="info-item">
+          <label>Start Date</label>
+          <span>{{ fiData.fi_start_date | date:'medium' }}</span>
+        </div>
+        <div class="info-item">
+          <label>End Date</label>
+          <span>{{ fiData.fi_end_date | date:'medium' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Data Message -->
+    <div class="no-data-card" *ngIf="!fiData.fi || fiData.fi.length === 0">
+      <div class="no-data-icon">📭</div>
+      <h3>No Financial Data Available</h3>
+      <p>Financial data is not yet available. This could be because:</p>
+      <ul>
+        <li>The FIP is still processing the request</li>
+        <li>The customer hasn't linked their accounts</li>
+        <li>The request is still pending</li>
+      </ul>
+      <button class="btn btn-primary" (click)="refresh()">Check Again</button>
+    </div>
+
+    <!-- Accounts Summary -->
+    <div class="accounts-grid" *ngIf="fiData.fi && fiData.fi.length > 0 && viewMode === 'summary'">
+      <div class="account-card" *ngFor="let account of fiData.fi">
+        <div class="account-header">
+          <div class="account-type">{{ account.fi_type }}</div>
+          <div class="fip-badge">{{ account.fip_id }}</div>
+        </div>
+        
+        <div class="account-body">
+          <div class="account-number">
+            <label>Account Number</label>
+            <span class="mono">{{ account.account_number }}</span>
+          </div>
+          
+          <div class="account-id">
+            <label>Account ID</label>
+            <span class="mono-small">{{ account.account_id }}</span>
+          </div>
+        </div>
+        
+        <div class="account-footer">
+          <button class="btn btn-info btn-block" (click)="viewAccountDetails(account)">
+            View Details →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Account View -->
+    <div class="detailed-view" *ngIf="selectedAccount && viewMode === 'detailed'">
+      <div class="detailed-header">
+        <button class="btn-back" (click)="closeAccountDetails()">← Back to Summary</button>
+        <h3>Account Details</h3>
+      </div>
+
+      <div class="info-card">
+        <h4>Account Information</h4>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Account Number</label>
+            <span class="mono">{{ selectedAccount.account_number }}</span>
+          </div>
+          <div class="info-item">
+            <label>Account ID</label>
+            <span class="mono">{{ selectedAccount.account_id }}</span>
+          </div>
+          <div class="info-item">
+            <label>FI Type</label>
+            <span>{{ selectedAccount.fi_type }}</span>
+          </div>
+          <div class="info-item">
+            <label>FIP ID</label>
+            <span>{{ selectedAccount.fip_id }}</span>
+          </div>
+          <div class="info-item">
+            <label>FI Data ID</label>
+            <span class="mono-small">{{ selectedAccount.fi_data_id }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h4>Raw Financial Data</h4>
+        <div class="json-viewer">
+          <pre>{{ selectedAccount.fi_data | json }}</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
