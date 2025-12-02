@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: account-aggregator-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/account_aggregator
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+    date-format: yyyy-MM-dd HH:mm:ss
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Digio Configuration
+digio:
+  base-url: https://ext.digio.in:444/fiu_api
+  username: ACK25030511375911186LKWJDXERYTXQ
+  password: CGYGOZKNCMHN8I8GSA5HH2DFKRSR732L
+  template-id: CTMP250926152142855LYQ59RGKJTAGZ
+  timeout: 30000
+
+# Logging
+logging:
+  level:
+    com.delcapital: DEBUG
+    org.springframework.web: INFO
+    org.hibernate: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
