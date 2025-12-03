@@ -20,6 +20,17 @@
 - Proper error handling & user feedback
 - Clean layered architecture
 
+## Screenshots
+
+### Dashboard
+![Account Aggregator Dashboard](images/screenshot(156).png)
+
+### Create Consent Request Form
+![Create Consent Form](images/screenshot(156).png)
+
+### Consent Requests List (Live Status)
+![Consent List with PENDING Status](images/screenshot(156).png)
+
 ## Tech Stack
 
 | Layer       | Technology                  |
