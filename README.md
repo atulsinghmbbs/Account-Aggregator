@@ -23,19 +23,12 @@
 ![Dashboard showing consent list with PENDING status](images/dashboard.png)
 
 ### 2. Create Consent Request Form (Fully Validated)
-![Create Consent Form with all fields and validation](images/create-consent-form.png)
+![Create Consent Form with all fields and validation](images/consent-create.png)
 
 ### 3. Consent Successfully Created (Digio Redirect URL + Gateway Token)
-![Consent created success with redirect URL](images/consent-created-success.png)
+![Consent created success with redirect URL](images/consent-list.png)
 
-### 4. Consent Approved on Digio (User approves on mobile/email)
-![User approves consent on Digio gateway](images/digio-consent-approval.png)
 
-### 5. Status Updated to ACTIVE (Real-time polling)
-![Consent status changed to ACTIVE after approval](images/consent-status-active.png)
-
-### 6. FI Data Fetch Simulation (Post consent approval)
-![FI data fetched successfully in sandbox mode](images/fi-data-fetched.png)
 
 ## Tech Stack
 | Layer        | Technology                          |
