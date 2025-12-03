@@ -35,11 +35,11 @@
 |--------------|-------------------------------------|
 | Backend      | Spring Boot 3.5, Java 21, Lombok    |
 | Database     | PostgreSQL 17                       |
-| ORM          | Spring Data JPA + Hibernate         |
-| Frontend     | Angular 17+, Angular Material, RxJS|
+| ORM          | Spring Data JPA                     |
+| Frontend     | Angular 17+                         |
 | AA Provider  | Digio KSA (Sandbox)                 |
 | Build Tool   | Maven                               |
-| Testing      | Postman + Swagger UI                |
+| Testing      | Postman                             |
 
 ## Quick Start
 
