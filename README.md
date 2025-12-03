@@ -20,7 +20,7 @@
 ## Screenshots (Live Working Flow)
 
 ### 1. Dashboard – Consent Requests List (Real-time Status)
-![Dashboard showing consent list with PENDING status](images/Screenshot (156).png)
+![Dashboard showing consent list with PENDING status](images/dashboard.png)
 
 ### 2. Create Consent Request Form (Fully Validated)
 ![Create Consent Form with all fields and validation](images/create-consent-form.png)
