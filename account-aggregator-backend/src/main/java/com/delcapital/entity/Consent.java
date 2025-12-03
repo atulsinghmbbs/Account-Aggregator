@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "consent_requests", indexes = {
+@Table(name = "consent", indexes = {
         @Index(name = "idx_consent_request_id", columnList = "consentRequestId"),
         @Index(name = "idx_customer_identifier", columnList = "customerIdentifier"),
         @Index(name = "idx_status", columnList = "status")
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Consent  extends AuditEntity {
+public class Consent extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

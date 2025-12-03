@@ -1,6 +1,8 @@
 package com.delcapital.dto.request;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -21,6 +23,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsentRequestDTO {
 
     @Valid
@@ -29,7 +32,7 @@ public class ConsentRequestDTO {
     private CustomerDetails customerDetails;
 
     @JsonProperty("customer_id")
-    private String customerId; // ← Added (outside customer_details, empty string)
+    private String customerId;
 
     @NotBlank(message = "Template ID is required")
     @JsonProperty("template_id")
@@ -70,7 +73,7 @@ public class ConsentRequestDTO {
 
         @NotBlank(message = "Customer identifier is required")
         @JsonProperty("customer_identifier")
-        private String customerIdentifier; // ← Should be same as mobile number
+        private String customerIdentifier;
     }
 
     @Data
@@ -81,18 +84,22 @@ public class ConsentRequestDTO {
 
         @NotNull(message = "Consent start date is required")
         @JsonProperty("consent_start_date")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime consentStartDate;
 
         @NotNull(message = "Consent expiry date is required")
         @JsonProperty("consent_expiry_date")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime consentExpiryDate;
 
         @NotNull(message = "FI start date is required")
         @JsonProperty("fi_start_date")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime fiStartDate;
 
         @NotNull(message = "FI end date is required")
         @JsonProperty("fi_end_date")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime fiEndDate;
 
         @JsonProperty("meta")

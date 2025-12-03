@@ -1,7 +1,7 @@
 package com.delcapital.repository;
 
 import com.delcapital.entity.FiRequest;
-import com.delcapital.enumeration.FiRequestStatus;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,4 @@ public interface FiRequestRepository extends JpaRepository<FiRequest, Long> {
 
     List<FiRequest> findByConsentRequestId(String consentRequestId);
 
-    List<FiRequest> findByStatus(FiRequestStatus status);
-
-    Optional<FiRequest> findFirstByConsentRequestIdOrderByCreatedAtDesc(String consentRequestId);
 }
